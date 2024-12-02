@@ -1,0 +1,12 @@
+DATA: lt_range TYPE RANGE OF c,
+      ls_range TYPE LINE OF lt_range.
+
+ls_range-sign = 'I'.
+ls_range-option = 'EQ'. " EQ = Equal
+ls_range-low = 'Apple'.
+APPEND ls_range TO lt_range.
+
+ls_range-sign = 'I'.
+ls_range-option = 'EQ'.
+ls_range-low = 'Banana'.
+APPEND ls_range TO lt_range.
