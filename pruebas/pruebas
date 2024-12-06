@@ -1,0 +1,16 @@
+*&---------------------------------------------------------------------*
+*& Report  ZPRUEBAS
+*&
+*&---------------------------------------------------------------------*
+*& La variable v_string1 contiene 'PRUEBASTRING',
+*& ¿Qué valor contendrá v_string2, si v_strin2 = v_string1+3(1)?
+*&---------------------------------------------------------------------*
+
+REPORT  ZPRUEBAS.
+DATA: v_string1 TYPE string,
+      v_string2 TYPE string.
+
+v_string1 = 'PRUEBASTRING'.
+v_string2 = v_string1+3(1).
+
+WRITE: / 'v_string2:', v_string2.
