@@ -1,0 +1,67 @@
+REPORT ZPRUEBAS.
+TYPES:
+ BEGIN OF ty_reg,
+   id(3) type n,
+   text(20) type c,
+ END OF ty_reg.
+
+DATA:
+dias TYPE STANDARD TABLE OF ty_reg WITH HEADER LINE,
+feriados  TYPE STANDARD TABLE OF ty_reg WITH HEADER LINE.
+
+" Llenar la tabla dias
+dias-ID = '001'.
+dias-TEXT = 'Lunes'.
+APPEND dias.
+
+dias-ID = '002'.
+dias-TEXT = 'Martes'.
+APPEND dias.
+
+dias-ID = '003'.
+dias-TEXT = 'Miércoles'.
+APPEND dias.
+
+dias-ID = '004'.
+dias-TEXT = 'Jueves'.
+APPEND dias.
+
+dias-ID = '005'.
+dias-TEXT = 'Viernes'.
+APPEND dias.
+
+dias-ID = '006'.
+dias-TEXT = 'Sábado'.
+APPEND dias.
+
+dias-ID = '007'.
+dias-TEXT = 'Domingo'.
+APPEND dias.
+
+" Llenar la tabla feriados
+feriados-ID = '001'.
+feriados-TEXT = 'Feriado'.
+APPEND feriados.
+
+feriados-ID = '008'.
+feriados-TEXT = 'Feriado'.
+APPEND feriados.
+
+feriados-ID = '006'.
+feriados-TEXT = 'Feriado'.
+APPEND feriados.
+
+feriados-ID = '007'.
+feriados-TEXT = 'Feriado'.
+APPEND feriados.
+
+
+SORT: dias BY id, feriados BY id.
+
+LOOP AT dias.
+  READ TABLE feriados WITH KEY id = dias-id BINARY SEARCH.
+  IF sy-subrc EQ 0.
+    dias-text = feriados-text.
+    MODIFY dias INDEX sy-tabix.
+  ENDIF.
+ENDLOOP.
