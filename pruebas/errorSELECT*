@@ -1,0 +1,22 @@
+REPORT ZPRUEBAS.
+
+DATA:
+      wa_mara TYPE Zmara,         " Estructura para almacenar un solo registro de la tabla mara
+      it_mara TYPE TABLE OF Zmara. " Tabla interna para almacenar varios registros de mara
+
+PARAMETERS: p_matnr TYPE Zmara-matnr.  " Definición del parámetro para el número de material
+
+START-OF-SELECTION.
+
+  " Realizar la consulta SELECT
+  SELECT * FROM Zmara
+    WHERE matnr = p_matnr.  " Los resultados se almacenan en la tabla interna it_mara
+
+  " Verificar si se encontraron registros
+  IF sy-subrc = 0.  " sy-subrc = 0 significa que se encontraron registros
+    LOOP AT it_mara INTO wa_mara.
+      WRITE: / 'Material:', wa_mara-matnr, 'Descripción:', wa_mara-maktx.
+    ENDLOOP.
+  ELSE.
+    WRITE: / 'No se encontraron materiales con el número:', p_matnr.
+  ENDIF.
