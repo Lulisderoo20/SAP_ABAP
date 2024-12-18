@@ -1,0 +1,6 @@
+REPORT   ZEJERCICIODEFINAL.
+
+DATA: t_mara like Zmara occurs 0 with header line.
+
+SELECT Zmatnr Zmatkl FROM Zmara INTO CORRESPONDING FIELDS OF TABLE t_mara.
+BREAK-POINT.
