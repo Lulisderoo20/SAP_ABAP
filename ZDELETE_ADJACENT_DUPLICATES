@@ -1,0 +1,39 @@
+REPORT  ZEJERCICIO16FINAL.
+
+TYPES: BEGIN OF material,
+         zMATNR TYPE zMATNR,
+         zMATKL TYPE zMATKL,
+         zMTART TYPE zMTART,
+       END OF material.
+
+DATA: t_material TYPE TABLE OF material,
+      ls_material TYPE material.
+
+CLEAR ls_material.
+ls_material-zMATNR = '200000016'.
+ls_material-zMATKL = '454550723'.
+ls_material-zMTART = 'MAT1'.
+APPEND ls_material TO t_material.
+CLEAR ls_material.
+ls_material-zMATNR = '200000016'.
+ls_material-ZMATKL = '454550723'.
+ls_material-ZMTART = 'MAT2'.
+APPEND ls_material TO t_material.
+CLEAR ls_material.
+ls_material-ZMATNR = '200000017'.
+ls_material-ZMATKL = '432132235'.
+ls_material-ZMTART = 'MAT1'.
+APPEND ls_material TO t_material.
+CLEAR ls_material.
+ls_material-ZMATNR = '200000017'.
+ls_material-ZMATKL = '432132234'.
+ls_material-ZMTART = 'MAT1'.
+APPEND ls_material TO t_material.
+CLEAR ls_material.
+
+DELETE ADJACENT DUPLICATES FROM t_material COMPARING ZMATNR ZMATKL.
+
+" Mostrar el contenido de la tabla interna
+LOOP AT t_material INTO ls_material.
+  WRITE: / 'MATNR:', ls_material-ZMATNR, 'MATKL:', ls_material-ZMATKL, 'MTART:', ls_material-ZMTART.
+ENDLOOP.
