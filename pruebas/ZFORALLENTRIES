@@ -1,0 +1,25 @@
+*&---------------------------------------------------------------------*
+*& Report  ZFORALLENTRIES
+*&
+*&---------------------------------------------------------------------*
+*&
+*&
+*&---------------------------------------------------------------------*
+
+REPORT  ZFORALLENTRIES.
+DATA: gt_flights TYPE STANDARD TABLE OF SPFLI,
+  gt_flights_schedule TYPE STANDARD TABLE OF SPFLI.
+
+*SELECT * FROM zsflightsa00001
+*   INTO TABLE gt_flights
+*   UP TO 3 ROWS.
+
+*IF sy-subrc EQ 0.
+
+  SELECT * FROM SPFLI
+    INTO TABLE gt_flights_schedule
+    FOR ALL ENTRIES IN gt_flights
+    WHERE carrid EQ gt_flights-carrid
+      AND connid EQ gt_flights-connid.
+
+BREAK-POINT.
