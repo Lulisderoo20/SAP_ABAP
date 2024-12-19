@@ -1,0 +1,17 @@
+*&---------------------------------------------------------------------*
+*& Report  ZHINTSSELECT
+*&
+*&---------------------------------------------------------------------*
+*&
+*&
+*&---------------------------------------------------------------------*
+
+REPORT  ZHINTSSELECT.
+
+
+DATA: lt_result TYPE TABLE OF SPFLI.
+
+SELECT * FROM SPFLI
+   INTO TABLE lt_result
+    WHERE CARRID = 'AA'
+  %_hints oracle 'INDEX ("SPFLI" "SPFLI_IDX")'.
